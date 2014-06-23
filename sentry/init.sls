@@ -3,7 +3,7 @@
 
 include:
   - nginx
-  - postgres
+  - postgresql
   - supervisor
 
 
