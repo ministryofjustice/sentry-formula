@@ -1,0 +1,16 @@
+{% set sentry = salt['grains.filter_by']({
+    'Debian': {
+        'postgres': {
+            'database': 'sentry',
+            'user': 'sentry',
+            'password': 'sentry',
+            'host': 'localhost',
+            'port': 5432,
+        },
+        'external_url': 'http://sentry.local:9000',
+        'x_forwarded': False,
+        'secret': '12345678901234567890987654321234567890po[hgfrt567iuyj',
+    },
+    'default': 'Debian',
+}, merge=salt['pillar.get']('sentry', {})) %}
+
