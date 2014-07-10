@@ -5,6 +5,8 @@ include:
   - nginx
   - postgresql
   - supervisor
+  - firewall
+  - logstash.client
 
 
 {{ app_skeleton('sentry') }}
@@ -80,7 +82,7 @@ sentry-superuser:
         echo "from sentry.models import User; User.objects.create_superuser('sentry', 'sentry@example.com', 'sentry')" | /srv/sentry/application/current/bin/sentry --config=/srv/sentry/application/current/sentry.conf.py shell
         touch /srv/sentry/application/shared/superuser_created
     - user: sentry
-    - unless: [ -e /srv/sentry/application/shared/superuser_created ]
+    - unless: 'test -e /srv/sentry/application/shared/superuser_created'
     - require:
       - user: sentry
       - file: /srv/sentry/application/current/sentry.conf.py
