@@ -1,3 +1,7 @@
+## Version 1.0.2
+
+* Bugfixes
+
 ## Version 1.0.1
 
 * Update to refer to postgresql formula
