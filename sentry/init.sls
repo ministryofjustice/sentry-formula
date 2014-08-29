@@ -67,22 +67,26 @@ sentry-deps:
 
 sentry-init:
   cmd.wait:
-    - name: /srv/sentry/application/current/bin/sentry --config=/srv/sentry/application/current/sentry.conf.py upgrade
+    - name: /srv/sentry/application/current/bin/sentry upgrade
     - user: sentry
     - require:
       - user: sentry
+    - env:
+        SENTRY_CONF: /srv/sentry/application/current/sentry.conf.py
     - watch:
       - file: /srv/sentry/application/current/sentry.conf.py
       - virtualenv: /srv/sentry/application/current
 
 
-sentry-superuser:
-  cmd.run:
-    - name: |
-        echo "from sentry.models import User; User.objects.create_superuser('sentry', 'sentry@example.com', 'sentry')" | /srv/sentry/application/current/bin/sentry --config=/srv/sentry/application/current/sentry.conf.py shell
-        touch /srv/sentry/application/shared/superuser_created
+#based on: https://sentry.readthedocs.org/en/latest/faq/index.html#how-do-i
+sentry-bootstrap:
+  cmd.script:
+    - name: salt://sentry/templates/bootstrap.py
+    - template: jinja
     - user: sentry
-    - unless: 'test -e /srv/sentry/application/shared/superuser_created'
+    - unless: 'test -e /srv/sentry/application/shared/bootstrap_project'
+    - env:
+        SENTRY_CONF: /srv/sentry/application/current/sentry.conf.py
     - require:
       - user: sentry
       - file: /srv/sentry/application/current/sentry.conf.py

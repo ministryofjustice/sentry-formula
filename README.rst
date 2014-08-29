@@ -8,10 +8,7 @@ just overwrite `sentry/templates/sentry.conf.py` file in your main `file_roots` 
 See salt docs `file_roots <http://docs.saltstack.com/en/latest/ref/file_server/file_roots.html>`_
 
 
-On first install it creates superuser:
- - username: sentry
- - password: sentry
- - email: sentry@example.com
+On first install it creates initial user, team and project. Default is map.jinja
 
 
 pillar

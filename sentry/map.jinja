@@ -10,6 +10,15 @@
         'external_url': 'http://sentry.local:9000',
         'x_forwarded': False,
         'secret': '12345678901234567890987654321234567890po[hgfrt567iuyj',
+        'bootstrap': {
+            'username': 'admin',
+            'email': 'admin@localhost',
+            'password': 'admin',
+            'team': 'default',
+            'project': 'default',
+            'public_key': '715c2864f03143ca8efc75dddb29b574',
+            'secret_key': '2dbbf8d49dd94ed0a821df1d6d5d26ea',
+        },
     },
     'default': 'Debian',
 }, merge=salt['pillar.get']('sentry', {})) %}
