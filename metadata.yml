@@ -1,3 +1,6 @@
 dependencies:
 - git@github.com:ministryofjustice/firewall-formula.git
 - git@github.com:ministryofjustice/postgresql-formula.git
+
+entry:
+ - sentry
