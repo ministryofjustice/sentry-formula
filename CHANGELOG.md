@@ -1,3 +1,7 @@
+## Version 1.1.0
+
+* Bootstrap initial user, team and project
+
 ## Version 1.0.2
 
 * Bugfixes
