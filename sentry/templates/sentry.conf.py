@@ -112,7 +112,7 @@ SENTRY_WEB_OPTIONS = {
 #  https://docs.djangoproject.com/en/1.3/topics/email/?from=olddocs#e-mail-backends
 
 #TODO: allow to configure email and email template
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = '{{ sentry.email_backend }}'
 
 EMAIL_HOST = 'localhost'
 EMAIL_HOST_PASSWORD = ''
@@ -121,7 +121,7 @@ EMAIL_PORT = 25
 EMAIL_USE_TLS = False
 
 # The email address to send on behalf of
-SERVER_EMAIL = 'root@localhost'
+SERVER_EMAIL = '{{ sentry.server_email }}'
 
 ###########
 ## etc. ##
@@ -130,6 +130,15 @@ SERVER_EMAIL = 'root@localhost'
 # If this file ever becomes compromised, it's important to regenerate your SECRET_KEY
 # Changing this value will result in all current sessions being invalidated
 SECRET_KEY = '{{ sentry.secret }}'
+
+# ADMINS. defaults to empty tuple if none defined in pillar.
+{%- if sentry.admins %}
+ADMINS = (
+{%- for admin_name, admin_email in sentry.admins.iteritems() %}
+('{{ admin_name }}', '{{ admin_email }}'),
+{%- endfor %}
+)
+{%- endif %}
 
 # http://twitter.com/apps/new
 # It's important that input a callback URL, even if its useless. We have no idea why, consult Twitter.
