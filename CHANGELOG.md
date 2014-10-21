@@ -1,3 +1,7 @@
+## Version 1.2.0
+
+* Templating for email notifications
+
 ## Version 1.1.0
 
 * Bootstrap initial user, team and project
