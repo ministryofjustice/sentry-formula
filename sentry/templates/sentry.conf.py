@@ -112,7 +112,7 @@ SENTRY_WEB_OPTIONS = {
 #  https://docs.djangoproject.com/en/1.3/topics/email/?from=olddocs#e-mail-backends
 
 #TODO: allow to configure email and email template
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = '{{ sentry.email_backend }}'
 
 EMAIL_HOST = 'localhost'
 EMAIL_HOST_PASSWORD = ''
@@ -121,7 +121,7 @@ EMAIL_PORT = 25
 EMAIL_USE_TLS = False
 
 # The email address to send on behalf of
-SERVER_EMAIL = 'root@localhost'
+SERVER_EMAIL = '{{ sentry.server_email }}'
 
 ###########
 ## etc. ##

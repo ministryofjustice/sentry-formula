@@ -17,5 +17,5 @@ example::
 
     sentry:
       external_url: http://sentry.example.com
-      x_forwarded': False
-      secret': 12345678901234567890987654321234567890po[hgfrt567iuyj
+      x_forwarded: False
+      secret: 12345678901234567890987654321234567890po[hgfrt567iuyj
