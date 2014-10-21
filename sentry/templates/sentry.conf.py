@@ -131,15 +131,6 @@ SERVER_EMAIL = '{{ sentry.server_email }}'
 # Changing this value will result in all current sessions being invalidated
 SECRET_KEY = '{{ sentry.secret }}'
 
-# ADMINS. defaults to empty tuple if none defined in pillar.
-{%- if sentry.admins %}
-ADMINS = (
-{%- for admin_name, admin_email in sentry.admins.iteritems() %}
-('{{ admin_name }}', '{{ admin_email }}'),
-{%- endfor %}
-)
-{%- endif %}
-
 # http://twitter.com/apps/new
 # It's important that input a callback URL, even if its useless. We have no idea why, consult Twitter.
 TWITTER_CONSUMER_KEY = ''
