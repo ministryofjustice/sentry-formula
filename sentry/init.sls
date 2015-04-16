@@ -40,7 +40,20 @@ sentry-deps:
     - pkgs:
       - build-essential
       - python-dev
+      - libxml2-dev 
+      - libxslt1-dev 
+      - libffi-dev
 
+
+/srv/sentry/requirements.txt:
+  file.managed:
+    - source: salt://sentry/templates/requirements.txt
+    - template: jinja
+    - mode: 644
+    - owner: sentry
+    - group: sentry
+    - watch_in:
+      - supervisord: supervise-sentry
 
 /srv/sentry/application/current:
   file.directory:
@@ -49,8 +62,10 @@ sentry-deps:
   virtualenv.managed:
     - user: sentry
     - system_site_packages: False
-    - requirements: salt://sentry/files/requirements.txt
-
+    - requirements: /srv/sentry/requirements.txt
+    - no_chown: True
+    - require:
+      - file: /srv/sentry/requirements.txt
 
 /srv/sentry/application/current/sentry.conf.py:
   file.managed:

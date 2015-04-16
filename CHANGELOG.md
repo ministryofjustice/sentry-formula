@@ -1,3 +1,9 @@
+## Version 2.0.0
+
+* Updated config for sentry version 7.4.3
+* added sentry-hipchat
+* Bootstrap initial organization
+
 ## Version 1.2.0
 
 * Templating for email notifications
