@@ -1,0 +1,3 @@
+{% from "sentry/map.jinja" import sentry with context %}
+sentry[postgres]=={{ sentry.version }}
+sentry-hipchat

@@ -30,6 +30,8 @@ DATABASES = {
     }
 }
 
+#SENTRY_ADMIN_EMAIL = 'your.name@example.com'
+SENTRY_ADMIN_EMAIL = '{{ sentry.admin_email }}'
 
 # If you're expecting any kind of real traffic on Sentry, we highly recommend
 # configuring the CACHES and Redis settings
@@ -37,6 +39,14 @@ DATABASES = {
 ###########
 ## CACHE ##
 ###########
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
+    }
+}
+
+SENTRY_CACHE = 'sentry.cache.django.DjangoCache'
 
 # You'll need to install the required dependencies for Memcached:
 #   pip install python-memcached
